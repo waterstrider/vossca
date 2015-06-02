@@ -1,0 +1,55 @@
+import QtQuick 2.0
+import QtQuick.Window 2.1
+
+Window {
+    property alias rootView: rootView
+    property alias bgColor: bgView.color
+    id: window
+    width: 1920; height: 1080
+    color: "black"
+    Rectangle {
+        id: bgView
+        anchors.fill: parent
+        scale: Math.min(width/rootView.width,height/rootView.height)
+        color: "black"
+        Item {
+            id: rootView
+            width: 1920; height: 1080
+            anchors.centerIn: parent
+
+
+
+
+
+            Image {
+                id: fullScreenButton
+                z: 1
+                width: 24; height: 24
+                source: "images/icon_fullscreen.png"
+                anchors { right: parent.right; top: parent.top; topMargin: 5; rightMargin: 45}
+                MouseArea {
+                    anchors.fill: parent
+                    onClicked: {
+                        if(window.visibility != Window.FullScreen)
+                            window.visibility = Window.FullScreen;
+                        else
+                            window.visibility = Window.AutomaticVisibility;
+                    }
+                }
+            }
+            Image {
+                id: closeButton
+                z: 1
+                width: 24; height: 24
+                source: "images/icon_close.png"
+                anchors { right: parent.right; top: parent.top; topMargin: 5; rightMargin: 10}
+                MouseArea {
+                    anchors.fill: parent;
+                    onClicked:  {
+                        window.close();
+                    }
+                }
+            }
+        }
+    }
+}

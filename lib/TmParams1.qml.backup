@@ -1,0 +1,270 @@
+    TmParam {
+        id : ccsTMSCARR1LOCK
+        name : "TM.SCARR1LOCK"
+    }
+    TmParam {
+        id : ccsTMSCARR2LOCK
+        name : "TM.SCARR2LOCK"
+    }
+    TmParam {
+        id : ccsTMSUCARR2LOCK
+        name : "TM.SUCARR2LOK"
+    }
+    TmParam {
+        id : ccsTMSUCARR1LOCK
+        name : "TM.SUCARR1LOK"
+    }
+    TmParam {
+        id : ccsTMSTATES1
+        name : "STATES_1"
+    }
+    TmParam {
+        id : ccsTMSTATES2
+        name : "STATES_2"
+    }
+    TmParam {
+        id : ccsTMSTATES3
+        name : "STATES_3"
+    }
+    TmParam {
+        id : ccsSAT
+        name : "AUS2_PLCNT"
+    }
+    TmParam {
+        id : ccsGROUND
+        name : "APLAC"
+    }
+    TmParam {
+        id : ccsTCSTFEECON
+        name : "TCST.FEECON"
+    }
+    TmParam {
+        id : ccsTCSTFREEERR
+        name : "TCST.FEEERR"
+    }
+    TmParam {
+        id : ccsTMSTTMLINKSTATUS
+        name : "TMST.TMLINKSTATUS"
+    }
+    TmParam {
+        id : ccsTMRSTTMLINKSTATUS
+        name : "TMRST.TMLINKSTATUS"
+    }
+    TmParam {
+        id : ccsTCSTGAUCON
+        name : "TCST.GAUCON"
+    }
+    TmParam {
+        id : ccsTCSTGAUERR
+        name : "TCST.GAUERR"
+    }
+    TmParam {
+        id : ccsTCPRGSERVMOD
+        name : "TCPRG.SERVMOD"
+    }
+    TmParam {
+        id : ccsTCPRGAUTHMOD
+        name : "TCPRG.AUTHMOD"
+    }
+    TmParam {
+        id : ccsDERTMSTATUS
+        name : "DER.TMSTATUS"
+    }
+    TmParam {
+        id : ccsTMLASTTCTSSRSAUTHACT
+        name : "LAST_TC_TSSR_SAUTHACT"
+    }
+    TmParam {
+        id : ccsTMFAR2AUANA
+        name : "FAR2_AUANA"
+    }
+
+    TmParam {
+        id : ccsTCSTFSTATE
+        name : "TCST.F_STATE"
+    }
+    TmParam {
+        id : ccsTMFEEREPORTVALUE
+        name : "FEEREPORT_VALUE"
+    }
+    TmParam {
+        id : ccsTCSTFRAMEA
+        name : "TCST.FRAMEA"
+    }
+    TmParam {
+        id : ccsRCSTFRETRANSMIT
+        name : "TCST.F_RETRANSMIT"
+    }
+    TmParam {
+        id : ccsTMRETRANSMITFLAG
+        name : "RETRANSMIT_FLAG"
+    }
+    TmParam {
+        id : ccsTMFEELOCKOUT
+        name : "FEE_LOCKOUT"
+    }
+    TmParam {
+        id : ccsTMFEENORFAVAILABLE
+        name : "FEE_NO_RF_AVAILABLE"
+    }
+    TmParam {
+        id : ccsTMFEENOBITLOCK
+        name : "FEE_NO_BIT_LOCK"
+    }
+    TmParam {
+        id : ccsTMWAITFLAG
+        name : "WAIT_FLAG"
+    }
+    TmParam {
+        id : ccsUSRSGSMCSMODE
+        name : "USR.SGSMCSMODE"
+    }
+    TmParam {
+        id : ccsUSRMCSLINKST
+        name : "USR.MCSLINKST"
+    }
+    TmParam {
+        id : ccsTMDOPPLERMEASURE
+        name : "DOPPLER_MEASURE"
+    }
+    TmParam {
+        id : ccsUSRSGSTTCTMUBFS
+        name : "USR.SGSTTCTMUBFS"
+    }
+    TmParam {
+        id : ccsUSRSGSTTCSTATUS
+        name : "USR.SGSTTCSTATUS"
+    }
+    TmParam {
+        id : ccsUSRSGSTTCIFMCS
+        name : "USR.SGSTTCIFMCS"
+    }
+    TmParam {
+        id : ccsUSRSGSTTCTCULKS
+        name : "USR.SGSTTCTCULKS"
+    }
+    TmParam {
+        id : ccsUSRSGSTTCTCEST
+        name : "USR.SGSTTCTCEST"
+    }
+    TmParam {
+        id : ccsUSRSGSTTCIFR3IFR
+        name : "USR.SGSTTCIFR3IF"
+    }
+    TmParam {
+        id : ccsUSRSGSTTCIFR3IFL
+        name : "USR.SGSTTCIFR2IFIF"
+    }
+    TmParam {
+        id : ccsLHPRHP1
+        name : "SGSTTCIFR3IF"
+    }
+    TmParam {
+        id : ccsLHPRHP2
+        name : "SGSTTCIFR3IF"
+    }
+    TmParam {
+        id : ccsUSRSGSTTCIFR2BS
+        name : "USR.SGSTTCIFR2BS"
+    }
+    TmParam {
+        id : ccsUSRSGSTTCIFR3BS
+        name : "USR.SGSTTCIFR3BS"
+    }
+    TmParam {
+        id : ccsUSRSGSTTCIFR2PL
+        name : "USR.SGSTTCIFR2PL"
+    }
+    TmParam {
+        id : ccsUSRSGSTTCIFR3PL
+        name : "USR.SGSTTCIFR3PL"
+    }
+    TmParam {
+        id : ccsMP_BUFFER_STATE
+        name : "MP_BUFFER_STATE"
+    }
+    TmParam {
+        id : ccsTMNORMALEVENTOCCURED
+        name : "NORMAL_EVENT_OCCURED"
+    }
+    TmParam {
+        id : ccsTMNORMALEVENTRECORDED
+        name : "NORMAL_EVENT_RECORDED"
+    }
+    TmParam {
+        id : ccsTMMESSAGEREPORTOCCURED
+        name : "MESSAGE_REPORT_OCCURED"
+    }
+    TmParam {
+        id : ccsTMMESSAGEREPORTRECORDED
+        name : "MESSAGE_REPORT_RECORDED"
+    }
+    TmParam {
+        id : ccsTMERROREVENTOCCURED
+        name : "ERROR_EVENT_OCCURED"
+    }
+    TmParam {
+        id : ccsTMERROREVENTRECORDED
+        name : "ERROR_EVENT_RECORDED"
+    }
+    TmParam {
+        id : ccsTMREJECTEDTCCOUNTER
+        name : "REJECTED_TC_COUNTER"
+    }
+    TmParam {
+        id : ccsTMRECEIVEDTCCOUNTER
+        name : "RECEIVED_TC_COUNTER"
+    }
+    TmParam {
+        id : ccsTMMPQFREEENTRIES1
+        name : "MPQ_FREE_ENTRIES_1"
+    }
+    TmParam {
+        id : ccsTMMPQFREEENTRIES2
+        name : "MPQ_FREE_ENTRIES_2"
+    }
+    TmParam {
+        id : ccsRCTMMPQSTATE1
+        name : "MPQ_STATE_1"
+    }
+    TmParam {
+        id : ccsRCTMMPQSTATE2
+        name : "MPQ_STATE_2"
+    }
+    TmParam {
+        id : ccsTT_NUMBER
+        name:"TT_NUMBER"
+    }
+
+    TmParam {
+        id : ccsRCTMFEEREPORTVALUEbar2
+        name : "FRAMEA"
+    }
+    TmParam {
+        id : ccsRCTMFEEREPORTVALUEbar
+        name : "FEEREPORT_VALUE"
+    }
+    TmParam {
+        id : ccsBATTERY_CURRENT
+        name : "BATTERY_CURRENT"
+    }
+    TmParam {
+        id : ccsBUS_VOLTAGE
+        name : "BUS_VOLTAGE"
+    }
+    TmParam {
+        id : ccsDEPTH_OF_DISCHARGE
+        name : "DEPTH_OF_DISCHARGE"
+    }
+    TmParam {
+        id : ccsTOTAL_ANGULAR_MOMENTUM_1
+        name : "TOTAL_ANGULAR_MOMENTUM_1"
+    }
+    TmParam {
+        id : ccsTOTAL_ANGULAR_MOMENTUM_2
+        name : "TOTAL_ANGULAR_MOMENTUM_2"
+    }
+    TmParam {
+        id : ccsTOTAL_ANGULAR_MOMENTUM_3
+        name : "TOTAL_ANGULAR_MOMENTUM_3"
+    }
