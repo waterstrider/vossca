@@ -1,4 +1,4 @@
-import QtQuick 2.0
+import QtQuick 2.3
 
 Rectangle {
     signal clicked
@@ -28,7 +28,8 @@ Rectangle {
 
     id: container
 
-    width: 222; height: 43
+    width: 222
+    height: 43
     color: bgColor
     border.color: borderColor
 
@@ -48,18 +49,18 @@ Rectangle {
     }
 
     onIsPressedChanged: {
-        if(isPressed) {
-            color = bgColorPressed;
-            border.color = borderColorPressed;
-            widgetImage.source = imageSourcePressed;
-            widgetLabel.color = textColorPressed;
-            widgetLabel.text = labelPressed;
+        if (isPressed) {
+            color = bgColorPressed
+            border.color = borderColorPressed
+            widgetImage.source = imageSourcePressed
+            widgetLabel.color = textColorPressed
+            widgetLabel.text = labelPressed
         } else {
-            color = bgColor;
-            border.color = borderColor;
-            widgetImage.source = imageSource;
-            widgetLabel.color = textColor;
-            widgetLabel.text = label;
+            color = bgColor
+            border.color = borderColor
+            widgetImage.source = imageSource
+            widgetLabel.color = textColor
+            widgetLabel.text = label
         }
     }
 
@@ -70,7 +71,8 @@ Rectangle {
         onReleased: isPressed = isOn
         onCanceled: isPressed = isOn
         onClicked: {
-            if(autoToggle) isOn= !isOn;
+            if (autoToggle)
+                isOn = !isOn
             container.clicked()
         }
     }

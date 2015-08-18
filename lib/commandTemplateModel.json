@@ -1,0 +1,32 @@
+{
+    "commandTemplate":
+    {
+        "group":
+        [
+            { "groupName": "NORMAL GROUP",
+                "attributes":
+                    {
+                        "item": ["NORMAL PASS 1", "NORMAL PASS 2", "NORMAL PASS 3", "NORMAL PASS 4", "NORMAL PASS 5"]
+                    }
+            },
+            { "groupName": "MAINTENANCE GROUP",
+                "attributes":
+                    {
+                        "item": ["MAINTENANCE PASS 1", "MAINTENANCE PASS 2", "MAINTENANCE PASS 3"]
+                    }
+            },
+            { "groupName": "EXTRA GROUP",
+                "attributes":
+                    {
+                        "item": ["EXTRA PASS 1", "EXTRA PASS 2", "EXTRA PASS 3"]
+                    }
+            },
+            { "groupName": "TEST GROUP",
+                "attributes":
+                    {
+                        "item": ["TEST PASS 1", "TEST PASS 2"]
+                    }
+            }
+        ]
+    }
+}

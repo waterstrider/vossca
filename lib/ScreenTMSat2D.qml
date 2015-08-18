@@ -1,4 +1,4 @@
-import QtQuick 2.0
+import QtQuick 2.3
 
 Rectangle {
     id: container
@@ -1252,8 +1252,8 @@ Rectangle {
                     x: 383; y: 374
                     label: "SELECTION"
                     param: model.param("SSR_EQPT_EXTERNAL_STATE")
-                    leftValues: ["OFF"]
-                    rightValues: ["ON"]
+                    leftValues: ["ON"]
+                    rightValues: ["OFF"]
                 }
                 WidgetParamToggle {
                     x: 459; y: 376
@@ -1273,8 +1273,8 @@ Rectangle {
                     x: 383; y: 479
                     label: "SELECTION"
                     param: model.param("IPU_F_EXTERNAL_STATE")
-                    leftValues: ["OFF"]
-                    rightValues: ["ON"]
+                    leftValues: ["ON"]
+                    rightValues: ["OFF"]
                 }
                 WidgetParamToggle {
                     x: 459; y: 481

@@ -1,4 +1,4 @@
-import QtQuick 2.0
+import QtQuick 2.3
 
 Item {
     signal clicked
@@ -24,12 +24,15 @@ Item {
 
     id: container
 
-    width: 222; height: 43
+    width: 222
+    height: 43
 
     CorneredRectangle {
         id: box
-        x:0; y:0
-        height: parent.height; width: parent.width
+        x: 0
+        y: 0
+        height: parent.height
+        width: parent.width
         borderColor: borderColor
         color: bgColor
         WidgetLabelUI {
@@ -42,18 +45,17 @@ Item {
     }
 
     onIsPressedChanged: {
-        if(isPressed) {
-            box.color = bgColorPressed;
-            box.borderColor = borderColorPressed;
-            widgetLabel.color = textColorPressed;
-            widgetLabel.text = labelPressed;
+        if (isPressed) {
+            box.color = bgColorPressed
+            box.borderColor = borderColorPressed
+            widgetLabel.color = textColorPressed
+            widgetLabel.text = labelPressed
         } else {
-            box.color = bgColor;
-            box.borderColor = borderColor;
-            widgetLabel.color = textColor;
-            widgetLabel.text = label;
+            box.color = bgColor
+            box.borderColor = borderColor
+            widgetLabel.color = textColor
+            widgetLabel.text = label
         }
-
     }
 
     onIsOnChanged: isPressed = isOn
@@ -63,7 +65,8 @@ Item {
         onReleased: isPressed = isOn
         onCanceled: isPressed = isOn
         onClicked: {
-            if(autoToggle) isOn= !isOn;
+            if (autoToggle)
+                isOn = !isOn
             container.clicked()
         }
     }

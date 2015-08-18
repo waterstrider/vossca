@@ -1,4 +1,4 @@
-import QtQuick 2.0
+import QtQuick 2.3
 import QtQuick.Window 2.1
 import QtQuick.Controls 1.2
 import QtQuick.Controls.Styles 1.2
@@ -10,21 +10,22 @@ Rectangle {
     property var window
     property string sessionName
     property var date
-    property var sessionList: context.getDbList(date.getFullYear(),date.getMonth(),date.getDate())
+    property var sessionList: context.getDbList(date.getFullYear(),
+                                                date.getMonth(), date.getDate())
 
     Component.onCompleted: {
-        console.log("ReplayPlayerView loaded");
-        if(sessionName == null || sessionName == "") {
-            if(sessionList.length > 0) {
-                sessionName = sessionList[0].name;
-                updateInfoTable(sessionName);
-                histTmModel.sessionName = sessionName;
-                histTmModel.reload();
+        console.log("ReplayPlayerView loaded")
+        if (sessionName == null || sessionName == "") {
+            if (sessionList.length > 0) {
+                sessionName = sessionList[0].name
+                updateInfoTable(sessionName)
+                histTmModel.sessionName = sessionName
+                histTmModel.reload()
             }
         } else {
-            updateInfoTable(sessionName);
-            histTmModel.sessionName = sessionName;
-            histTmModel.reload();
+            updateInfoTable(sessionName)
+            histTmModel.sessionName = sessionName
+            histTmModel.reload()
         }
     }
 
@@ -33,13 +34,30 @@ Rectangle {
     }
 
     function updateInfoTable(sName) {
-        var sessionInfo = context.getDbInfo(sName);
-        infoListModel.clear();
-        infoListModel.append({"property": "Date", "value":sessionInfo.date.toISOString().substr(0,10)});
-        infoListModel.append({"property": "Time", "value":sessionInfo.date.toISOString().substr(11,5)});
-        infoListModel.append({"property": "User", "value":sessionInfo.user});
-        infoListModel.append({"property": "Workstation", "value":sessionInfo.workstation});
-        infoListModel.append({"property": "Session type", "value":sessionInfo.sessionType});
+        var sessionInfo = context.getDbInfo(sName)
+        infoListModel.clear()
+        infoListModel.append({
+                                 property: "Date",
+                                 value: sessionInfo.date.toISOString(
+                                            ).substr(0, 10)
+                             })
+        infoListModel.append({
+                                 property: "Time",
+                                 value: sessionInfo.date.toISOString(
+                                            ).substr(11, 5)
+                             })
+        infoListModel.append({
+                                 property: "User",
+                                 value: sessionInfo.user
+                             })
+        infoListModel.append({
+                                 property: "Workstation",
+                                 value: sessionInfo.workstation
+                             })
+        infoListModel.append({
+                                 property: "Session type",
+                                 value: sessionInfo.sessionType
+                             })
     }
 
     HistTmModel {
@@ -47,7 +65,8 @@ Rectangle {
         context: container.context
     }
 
-    width: 1920; height: 1080
+    width: 1920
+    height: 1080
     color: "black"
 
     Image {
@@ -58,36 +77,45 @@ Rectangle {
 
     WidgetLoginInfo {
         id: userInfo
-        x: 10; y: 90
+        x: 10
+        y: 90
         context: container.context
     }
 
     ComboBox {
         id: playList
-        x: 10; y: 320
-        width: 300; height: 30
+        x: 10
+        y: 320
+        width: 300
+        height: 30
 
         model: ListModel {
             id: sessionListModel
             Component.onCompleted: {
-                var sessionList = context.getDbList(date.getFullYear(),date.getMonth(),date.getDate())
-                for(var i = 0; i < sessionList.length; i++) {
-                    var sessionInfo = sessionList[i];
-                    sessionListModel.append({"text":sessionInfo.date.toISOString().substr(11,5) +
-                                                " - " + sessionInfo.user +
-                                                " - " + sessionInfo.workstation,
-                                            "name":sessionInfo.name});
-                    if(sessionInfo.name == sessionName) {
-                        playList.currentIndex = i;
+                var sessionList = context.getDbList(date.getFullYear(),
+                                                    date.getMonth(),
+                                                    date.getDate())
+                for (var i = 0; i < sessionList.length; i++) {
+                    var sessionInfo = sessionList[i]
+                    sessionListModel.append({
+                                                text: sessionInfo.date.toISOString(
+                                                          ).substr(
+                                                          11,
+                                                          5) + " - " + sessionInfo.user + " - "
+                                                      + sessionInfo.workstation,
+                                                name: sessionInfo.name
+                                            })
+                    if (sessionInfo.name == sessionName) {
+                        playList.currentIndex = i
                     }
                 }
             }
         }
         onActivated: {
-            sessionName = sessionListModel.get(index).name;
-            updateInfoTable(sessionName);
-            histTmModel.sessionName = sessionName;
-            histTmModel.reload();
+            sessionName = sessionListModel.get(index).name
+            updateInfoTable(sessionName)
+            histTmModel.sessionName = sessionName
+            histTmModel.reload()
         }
     }
 
@@ -97,55 +125,72 @@ Rectangle {
 
     Rectangle {
         id: infoPanel
-        x: 10; y: 380
-        width: 300; height: 630
+        x: 10
+        y: 380
+        width: 300
+        height: 630
         border.width: 1
         border.color: "#009DCC"
         color: "#80000000"
         TableView {
             anchors.fill: parent
-            TableViewColumn {role: "property"; title: "Property"; width: 99}
-            TableViewColumn {role: "value"; title: "Value"; width: 199}
+            TableViewColumn {
+                role: "property"
+                title: "Property"
+                width: 99
+            }
+            TableViewColumn {
+                role: "value"
+                title: "Value"
+                width: 199
+            }
             model: infoListModel
-            style: StyleTableViewDark { }
+            style: StyleTableViewDark {
+            }
         }
     }
 
     TabView {
         id: tabView
-        x: 335; y: 90
-        width: 1575; height: 920
+        x: 335
+        y: 90
+        width: 1575
+        height: 920
         style: TabViewStyle {
-                tabOverlap: 0
-                frameOverlap: 0
-                tab: Rectangle {
-                    color: styleData.selected?"#009DCC":"transparent"
-                    border.color:  "white"
-                    implicitWidth: 240
-                    implicitHeight: 36
-                    radius: 4
-                    WidgetLabelUI {
-                        id: text
-                        anchors.centerIn: parent
-                        font.pixelSize: 20
-                        text: styleData.title
-                        color: "white"
-                    }
+            tabOverlap: 0
+            frameOverlap: 0
+            tab: Rectangle {
+                color: styleData.selected ? "#009DCC" : "transparent"
+                border.color: "white"
+                implicitWidth: 240
+                implicitHeight: 36
+                radius: 4
+                WidgetLabelUI {
+                    id: text
+                    anchors.centerIn: parent
+                    font.pixelSize: 20
+                    text: styleData.title
+                    color: "white"
                 }
-                frame: Rectangle { color: "transparent"; border.color: "white"; border.width: 1}
             }
-
+            frame: Rectangle {
+                color: "transparent"
+                border.color: "white"
+                border.width: 1
+            }
+        }
 
         WidgetBusyIndicator {
             id: busyIndicator
-            running: (sessionName != null) && (sessionName != "") &&
-                     ((histTmModel.status == "loading" || histTmModel.status == "indexing"))
-            text: (histTmModel.status == "indexing")?"Indexing ...":"Loading ..."
+            running: (sessionName != null) && (sessionName != "")
+                     && ((histTmModel.status == "loading"
+                          || histTmModel.status == "indexing"))
+            text: (histTmModel.status == "indexing") ? "Indexing ..." : "Loading ..."
         }
-//        Tab {
-//            title: "Activities"
-//        }
 
+        //        Tab {
+        //            title: "Activities"
+        //        }
         Tab {
             title: "Satellite Status"
             ScreenTMSat2D {
@@ -160,17 +205,21 @@ Rectangle {
                     anchors.margins: 3
                     anchors.right: parent.right
                     anchors.top: parent.top
-                    width: 16; height: 16
+                    width: 16
+                    height: 16
                     imageSource: "images/iconDetach.png"
                     onClicked: {
-                        var comChildWindow = Qt.createComponent("FullScreenWindow.qml");
-                        var win = comChildWindow.createObject(container);
-                        var comScreenTMSat2D = Qt.createComponent("ScreenTMSat2D.qml");
-                        comScreenTMSat2D.createObject(win.rootView,{"window":win,
-                                                          "model":histTmModel});
-                        win.show();
+                        var comChildWindow = Qt.createComponent(
+                                    "FullScreenWindow.qml")
+                        var win = comChildWindow.createObject(container)
+                        var comScreenTMSat2D = Qt.createComponent(
+                                    "ScreenTMSat2D.qml")
+                        comScreenTMSat2D.createObject(win.rootView, {
+                                                          window: win,
+                                                          model: histTmModel
+                                                      })
+                        win.show()
                     }
-
                 }
             }
         }
@@ -188,54 +237,65 @@ Rectangle {
                     anchors.margins: 3
                     anchors.right: parent.right
                     anchors.top: parent.top
-                    width: 16; height: 16
+                    width: 16
+                    height: 16
                     imageSource: "images/iconDetach.png"
                     onClicked: {
-                        var comChildWindow = Qt.createComponent("FullScreenWindow.qml");
-                        var win = comChildWindow.createObject(container);
-                        var comScreenTMGround = Qt.createComponent("ScreenTMGround.qml");
-                        comScreenTMGround.createObject(win.rootView,{"window":win,
-                                                           "model":histTmModel});
-                        win.show();
+                        var comChildWindow = Qt.createComponent(
+                                    "FullScreenWindow.qml")
+                        var win = comChildWindow.createObject(container)
+                        var comScreenTMGround = Qt.createComponent(
+                                    "ScreenTMGround.qml")
+                        comScreenTMGround.createObject(win.rootView, {
+                                                           window: win,
+                                                           model: histTmModel
+                                                       })
+                        win.show()
                     }
-
                 }
             }
         }
     }
 
-
     Row {
         id: playbackController
         height: 70
-        x: 30; y: 1010
+        x: 30
+        y: 1010
         spacing: 20
         WidgetButtonImage {
             id: buttonPlay
-            width: 27; height: 27
+            width: 27
+            height: 27
             anchors.verticalCenter: parent.verticalCenter
             imageSource: "images/buttonPlayClear.png"
             imageSourcePressed: "images/buttonPlay.png"
             isOn: histTmModel.status == "loaded" && !histTmModel.playing
-            onClicked: if(isOn) histTmModel.play();
+            onClicked: if (isOn)
+                           histTmModel.play()
         }
         WidgetButtonImage {
             id: buttonPause
-            width: 27; height: 27
+            width: 27
+            height: 27
             anchors.verticalCenter: parent.verticalCenter
             imageSource: "images/buttonPauseClear.png"
             imageSourcePressed: "images/buttonPause.png"
             isOn: histTmModel.status == "loaded" && histTmModel.playing
-            onClicked: if(isOn) histTmModel.pause();
+            onClicked: if (isOn)
+                           histTmModel.pause()
         }
         WidgetButtonImage {
             id: buttonStop
-            width: 27; height: 27
+            width: 27
+            height: 27
             anchors.verticalCenter: parent.verticalCenter
             imageSource: "images/buttonStopClear.png"
             imageSourcePressed: "images/buttonStop.png"
-            isOn: histTmModel.status == "loaded" && (histTmModel.currentTime > histTmModel.startTime)
-            onClicked: if(isOn) histTmModel.stop();
+            isOn: histTmModel.status == "loaded"
+                  && (histTmModel.currentTime > histTmModel.startTime)
+            onClicked: if (isOn)
+                           histTmModel.stop()
         }
         WidgetPlaybackProgress {
             id: progressPlayback
@@ -259,13 +319,5 @@ Rectangle {
             value: histTmModel.speed
             onValueChanged: histTmModel.speed = value
         }
-
     }
-
 }
-
-
-
-
-
-

@@ -1,24 +1,29 @@
-import QtQuick 2.0
+import QtQuick 2.3
 
 Item {
     signal monthClicked(var clickedMonth)
     signal dayClicked(var clickedDate)
 
     id: container
-    property int year:2014
+    property int year: getYear()
+    function getYear() {
+        return new Date().getFullYear()
+    }
 
-    property var monthNames: [ "JANUARY", "FEBRUARY", "MARCH", "APRIL", "MAY", "JUNE",
-    "JULY", "AUGUST", "SEPTEMBER", "OCTOBER", "NOVEMBER", "DECEMBER" ]
+    property var monthNames: ["JANUARY", "FEBRUARY", "MARCH", "APRIL", "MAY", "JUNE", "JULY", "AUGUST", "SEPTEMBER", "OCTOBER", "NOVEMBER", "DECEMBER"]
 
     Grid {
-        x: 0; y: 40
+        x: 0
+        y: 40
         columns: 4
-        rowSpacing: 25; columnSpacing: 25
+        rowSpacing: 25
+        columnSpacing: 25
         Repeater {
             model: 12
             WidgetButtonCornered {
                 property int month: index
-                width: 320; height: 270
+                width: 320
+                height: 270
 
                 WidgetLabelUI {
                     anchors.leftMargin: 30
@@ -44,50 +49,72 @@ Item {
                 }
 
                 Row {
-                    x: 0; y: 55
+                    x: 0
+                    y: 55
                     spacing: 0
                     Repeater {
                         model: ["S", "M", "T", "W", "T", "F", "S"]
                         WidgetLabelUI {
-                            width: 42; height: 30
+                            width: 42
+                            height: 30
                             horizontalAlignment: Text.AlignRight
-                            color: (index==0)?"red":"white"
+                            color: (index == 0) ? "red" : "white"
                             text: modelData
                         }
                     }
                 }
 
                 Grid {
-                    x: 12; y: 85
+                    x: 12
+                    y: 85
                     columns: 7
-                    rowSpacing: 0; columnSpacing: 12
+                    rowSpacing: 0
+                    columnSpacing: 12
                     Repeater {
                         model: 42
                         WidgetButton {
-                            property var date: getDateForCalMonth(year,month,index)
-                            width: 30; height: 30
-                            label: (date.getMonth()==month)?date.getDate():""
-                            textColor: (index%7==0)?"red":"white"
+                            property var date: getDateForCalMonth(year,
+                                                                  month, index)
+                            Component.onCompleted: {
+                                if (label) {
+                                    if (date.toDateString(
+                                                ) == (new Date).toDateString(
+                                                )) {
+                                        isOn = true
+                                    }
+                                }
+                            }
+
+                            width: 30
+                            height: 30
+                            label: (date.getMonth(
+                                        ) == month) ? date.getDate() : ""
+                            textColor: (index % 7 == 0) ? "red" : "white"
                             labelAlignment: Text.AlignRight
                             borderColor: "transparent"
-                            enabled: (date.getMonth()==month)
+                            enabled: (date.getMonth() == month)
+                            onIsOnChanged: {
+                                if (label) {
+                                    if (date.toDateString(
+                                                ) == (new Date).toDateString(
+                                                )) {
+                                        isOn = true
+                                    }
+                                }
+                            }
+
                             onClicked: dayClicked(date)
                         }
                     }
                 }
-                onClicked: monthClicked(month);
+                onClicked: monthClicked(month)
             }
         }
     }
 
-    function getDateForCalMonth(year,month,i) {
-        var d = new Date(year,month,1);
-        d.setDate(d.getDate() - d.getDay() + i);
-        return d;
+    function getDateForCalMonth(year, month, i) {
+        var d = new Date(year, month, 1)
+        d.setDate(d.getDate() - d.getDay() + i)
+        return d
     }
-
-
-
-
-
 }

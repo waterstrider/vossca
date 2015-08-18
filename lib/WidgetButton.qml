@@ -1,7 +1,7 @@
-import QtQuick 2.0
+import QtQuick 2.3
 
 Rectangle {
-    signal clicked  
+    signal clicked
     property string label: ""
     property color bgColor: "transparent"
     property color borderColor: "#009DCC"
@@ -26,13 +26,15 @@ Rectangle {
 
     id: container
 
-    width: 222; height: 43
+    width: 222
+    height: 43
     color: bgColor
     border.color: borderColor
 
     WidgetLabelUI {
         id: widgetLabel
-        x: 0; y: 0
+        x: 0
+        y: 0
         anchors.fill: parent
         anchors.leftMargin: labelLeftMargin
         color: textColor
@@ -40,16 +42,16 @@ Rectangle {
     }
 
     onIsPressedChanged: {
-        if(isPressed) {
-            color = bgColorPressed;
-            border.color = borderColorPressed;
-            widgetLabel.color = textColorPressed;
-            widgetLabel.text = labelPressed;
+        if (isPressed) {
+            color = bgColorPressed
+            border.color = borderColorPressed
+            widgetLabel.color = textColorPressed
+            widgetLabel.text = labelPressed
         } else {
-            color = bgColor;
-            border.color = borderColor;
-            widgetLabel.color = textColor;
-            widgetLabel.text = label;
+            color = bgColor
+            border.color = borderColor
+            widgetLabel.color = textColor
+            widgetLabel.text = label
         }
     }
 
@@ -61,7 +63,8 @@ Rectangle {
         onReleased: isPressed = isOn
         onCanceled: isPressed = isOn
         onClicked: {
-            if(autoToggle) isOn= !isOn;
+            if (autoToggle)
+                isOn = !isOn
             container.clicked()
         }
     }

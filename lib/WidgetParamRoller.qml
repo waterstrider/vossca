@@ -1,4 +1,4 @@
-import QtQuick 2.0
+import QtQuick 2.3
 
 Item {
     property var param
@@ -10,13 +10,15 @@ Item {
     property color textColor: "#FFFFFF"
 
     Image {
-        x: -10; y: 1
+        x: -10
+        y: 1
         rotation: 0
         source: "images/widget_roller_border.png"
         Image {
             visible: param.engValidity
-            rotation: -310+(310*((Math.min(_value,max)-min)/(max-min)))
-            source: "images/widget_roller_arrow.png"
+            rotation: -310 + (310 * ((Math.min(_value,
+                                               max) - min) / (max - min)))
+            source: "images/arrows/widget_roller_arrow.png"
             Behavior on rotation {
                 enabled: true
                 SpringAnimation {
@@ -27,26 +29,27 @@ Item {
         }
     }
     WidgetLabel {
-        x: -4; y: 24
-        width: 75; height: 33
+        x: -4
+        y: 24
+        width: 75
+        height: 33
         font.pixelSize: textSize
         color: textColor
-        text: param.engValidity?_value.toFixed(precision):""
+        text: param.engValidity ? _value.toFixed(precision) : ""
         horizontalAlignment: Text.AlignHCenter
     }
     Component.onCompleted: {
-        updateValue();
+        updateValue()
     }
     onParamChanged: {
-        param.nameChanged.connect(updateValue);
-        param.engValidityChanged.connect(updateValue);
-        param.engValueChanged.connect(updateValue);
+        param.nameChanged.connect(updateValue)
+        param.engValidityChanged.connect(updateValue)
+        param.engValueChanged.connect(updateValue)
     }
     function updateValue() {
-        if(!param.engValidity || isNaN(param.engValue))
-            _value = 0;
+        if (!param.engValidity || isNaN(param.engValue))
+            _value = 0
         else
-            _value = Number(param.engValue);
+            _value = Number(param.engValue)
     }
-
 }

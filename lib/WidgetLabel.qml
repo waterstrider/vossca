@@ -1,4 +1,5 @@
-import QtQuick 2.0
+import QtQuick 2.3
+
 Text {
     color: "#FFFFFF"
     font.family: "Gill Sans MT"
@@ -7,6 +8,3 @@ Text {
     horizontalAlignment: Text.AlignLeft
     verticalAlignment: Text.AlignVCenter
 }
-
-
-

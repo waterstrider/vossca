@@ -1,4 +1,4 @@
-import QtQuick 2.0
+import QtQuick 2.3
 
 Rectangle {
     id: container
@@ -26,6 +26,8 @@ Rectangle {
 
             Image {
                 id: imgBackground
+                x: 0
+                y: 0
                 source:"images/bgScreenTMGround.png"
                 width: 1920; height: 1080
 
@@ -92,6 +94,8 @@ Rectangle {
                             "OPEN":"blue",
                             "BROKEN":"orange"
                         }
+
+
                 }
 
                 WidgetParamStatus {
@@ -211,6 +215,7 @@ Rectangle {
                     width: 75; height: 15
                     label: "GROUND"
                     param: model.param("APLAC")
+                    //param: model.param("AUS2_PLCNT")
                     precision: 0
                     min: 0; max: 100
                     minNorm: 0; maxNorm: 100
@@ -226,9 +231,10 @@ Rectangle {
                     param1: model.param("AUS2_PLCNT")
                     min1: 0; max1: 100
                     param2: model.param("APLAC")
+                    //param2: model.param("AUS2_PLCNT")
                     min2: 0; max2: 100
                 }
-				
+
 //// ***** Column 1, Row 2, COP Acknowledge
 
                 WidgetParamStatus {
@@ -260,7 +266,7 @@ Rectangle {
                                    "NOT_NORMAL":"orange",
                                    "OUT_OF_RANGE":"red"
                     }
-                }          
+                }
                 WidgetParamHLevel {
                     x: 120; y: 405
                     param: model.param("FEEREPORT_VALUE")
@@ -352,7 +358,7 @@ Rectangle {
                             "TRUE": "yellow"
                         }
                 }
-				
+
 //// ***** Column 1, Row 3, COP Telecommand
                 WidgetTelecommand {
                     x: 32; y:520
@@ -478,7 +484,7 @@ Rectangle {
                     label: "PL MPQ"
                     param: model.param("MPQ_FREE_ENTRIES_2")
                     precision: 0
-                    min: 0; max: 300
+                    min: 0; max: 500
                 }
 
                 WidgetParamStatus {
@@ -542,7 +548,7 @@ Rectangle {
                 }
 
 //// ***** Column 2, Bottom, Countdown
-                WidgetCountdown {
+               WidgetCountdown {
                     x: 504; y: 888
                     model: container.model.countdownModel.model
                 }
@@ -645,6 +651,8 @@ Rectangle {
                 }
                 WidgetParamLock {
                     x: 1440; y: 135
+                    width: 0
+                    height: 0
                     param: model.param("SGSTTCIFR2BS")
                 }
                 WidgetParamLock {
@@ -728,7 +736,7 @@ Rectangle {
                             "S_VAL_TONE_TRAN": "yellow"
                         }
                 }
-				
+
 //// ***** Column 3, Row 2, SBS
                 WidgetLabel {
                     x: 1238; y: 410
@@ -875,25 +883,24 @@ Rectangle {
                     replayMode: container.replayMode
                     seriesList: [{"name":"TOTAL_ANGULAR_MOMENTUM_1", "title":"Momentum 1", "borderColor":"#FFD3AB21", "color":"#44D3AB21"},
                         {"name":"TOTAL_ANGULAR_MOMENTUM_2", "title":"Momentum 2", "borderColor":"#FF21D3AB", "color":"#8821D3AB"},
-                        {"name":"TOTAL_ANGULAR_MOMENTUM_3", "title":"Momentum 3", "borderColor":"#FFAB21D3", "color":"#CCAB21D3"}
-                    ]
+                        {"name":"TOTAL_ANGULAR_MOMENTUM_3", "title":"Momentum 3", "borderColor":"#FFAB21D3", "color":"#CCAB21D3"} ]
                 }
 
 
 // ***** Column 4, Bottom, 3D Earth and Satellite
 
-                Item {
-                    id: earthSat
-                    x: 1406; y: 543
-                    width: 520*scaleFactor*window.scaleFactor; height: 520*scaleFactor*window.scaleFactor
-                    scale: 1.0/(scaleFactor*window.scaleFactor)
-                    transformOrigin: Item.TopLeft
-                    EarthSat {
-                        anchors.fill: parent
-                        time: container.model.currentTime
-                    }
-                }
             }
+               Item {
+                   id: earthSat
+                   x: 1406; y: 543
+                   width: 520*scaleFactor*window.scaleFactor; height: 520*scaleFactor*window.scaleFactor
+                   scale: 1.0/(scaleFactor*window.scaleFactor)
+                   transformOrigin: Item.TopLeft
+                   EarthSat {
+                       anchors.fill: parent
+                       time: container.model.currentTime
+                   }
+               }
         }
     }
 

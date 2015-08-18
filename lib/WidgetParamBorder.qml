@@ -1,4 +1,4 @@
-import QtQuick 2.0
+import QtQuick 2.3
 
 Item {
     property var param
@@ -9,22 +9,27 @@ Item {
     property alias showLabel: widgetLabel.visible
     property string _value: ""
 
-    width: 84; height: 39
+    width: 84
+    height: 39
 
     WidgetLabel {
         id: widgetLabel
-        x:0; y: -25
-        width: parent.width; height: 15
+        x: 0
+        y: -25
+        width: parent.width
+        height: 15
         horizontalAlignment: Text.AlignHCenter
         visible: true
         text: ""
     }
     Image {
-        source:"images/widget_border.png"
-        width: parent.width; height: parent.height
+        source: "images/widget_border.png"
+        width: parent.width
+        height: parent.height
     }
     WidgetLabel {
-        width: parent.width; height: parent.height
+        width: parent.width
+        height: parent.height
         font.pixelSize: textSize
         font.family: "Digital-7"
         color: textColor
@@ -32,23 +37,16 @@ Item {
         horizontalAlignment: Text.AlignHCenter
     }
     Component.onCompleted: {
-        updateValue();
+        updateValue()
     }
     onParamChanged: {
-        param.nameChanged.connect(updateValue);
-        param.engValueChanged.connect(updateValue);
+        param.nameChanged.connect(updateValue)
+        param.engValueChanged.connect(updateValue)
     }
     function updateValue() {
-        if(!param.engValidity || isNaN(param.engValue))
-            _value = "";
+        if (!param.engValidity || isNaN(param.engValue))
+            _value = ""
         else
-            _value = Number(param.engValue).toFixed(precision);
+            _value = Number(param.engValue).toFixed(precision)
     }
 }
-
-
-
-
-
-
-

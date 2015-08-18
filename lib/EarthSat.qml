@@ -1,4 +1,4 @@
-import QtQuick 2.0
+import QtQuick 2.3
 import Qt3D 2.0
 import Qt3D.Shapes 2.0
 import "satellite.js" as Satellite

@@ -1,0 +1,3 @@
+module QLogWatcher
+plugin logWatcher
+

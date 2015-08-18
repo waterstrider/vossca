@@ -1,4 +1,4 @@
-import QtQuick 2.0
+import QtQuick 2.3
 import QtQuick.Controls 1.2
 
 Item {
@@ -16,7 +16,6 @@ Item {
         onTriggered: container.execute()
     }
 }
-
 //    QtObject {
 //        id: task
 //        signal trigger

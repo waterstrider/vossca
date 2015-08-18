@@ -1,4 +1,4 @@
-import QtQuick 2.0
+import QtQuick 2.3
 
 Item {
     id: container
@@ -7,17 +7,18 @@ Item {
     property var selectedItem
     property color borderColor: "white"
 
-    width: 100; height: 30
+    width: 100
+    height: 30
 
     onModelChanged: model.countChanged.connect(updateSelection)
     onSelectedIndexChanged: updateSelection()
 
-    function updateSelection(){
-        if(selectedIndex >= 0 && selectedIndex < model.count) {
-            var item = model.get(selectedIndex);
-            if(item) {
-                selectedItem = item.value;
-                widgetText.text = item.text;
+    function updateSelection() {
+        if (selectedIndex >= 0 && selectedIndex < model.count) {
+            var item = model.get(selectedIndex)
+            if (item) {
+                selectedItem = item.value
+                widgetText.text = item.text
             }
         }
     }
@@ -26,12 +27,13 @@ Item {
         id: buttonLeft
         anchors.left: container.left
         anchors.verticalCenter: container.verticalCenter
-        height: container.height/1.5; width: 0.2*container.width
+        height: container.height / 1.5
+        width: 0.2 * container.width
         imageSource: "images/WidgetSpeedControlLeft.png"
         imageSourcePressed: "images/WidgetSpeedControlLeftClear.png"
         onClicked: {
-            if(selectedIndex > 0) {
-                selectedIndex--;
+            if (selectedIndex > 0) {
+                selectedIndex--
             }
         }
     }
@@ -39,12 +41,13 @@ Item {
         id: buttonRight
         anchors.right: container.right
         anchors.verticalCenter: container.verticalCenter
-        height: container.height/1.5; width: 0.2*container.width
+        height: container.height / 1.5
+        width: 0.2 * container.width
         imageSource: "images/WidgetSpeedControlRight.png"
         imageSourcePressed: "images/WidgetSpeedControlRightClear.png"
         onClicked: {
-            if(selectedIndex < model.count-1) {
-                selectedIndex++;
+            if (selectedIndex < model.count - 1) {
+                selectedIndex++
             }
         }
     }
@@ -56,16 +59,14 @@ Item {
         border.width: 1
         radius: 2
         anchors.centerIn: parent
-        height: container.height; width: 0.6*container.width
+        height: container.height
+        width: 0.6 * container.width
 
         WidgetLabelUI {
             id: widgetText
-            font.pixelSize: 0.5*container.height
+            font.pixelSize: 0.5 * container.height
             anchors.fill: parent
             horizontalAlignment: Text.AlignHCenter
         }
     }
-
-
-
 }

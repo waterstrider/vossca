@@ -1,4 +1,4 @@
-import QtQuick 2.0
+import QtQuick 2.3
 
 Item {
     property var param
@@ -11,7 +11,8 @@ Item {
 
     WidgetLabel {
         id: widgetLabel
-        x:0; y: -10
+        x: 0
+        y: -10
         width: 60
         horizontalAlignment: Text.AlignHCenter
         visible: true
@@ -19,46 +20,50 @@ Item {
     }
 
     Image {
-        x: 8; y: 20
-        source:"images/widget_vlevel_inactive.png"
+        x: 8
+        y: 20
+        source: "images/widget_vlevel_inactive.png"
         Item {
             x: 1
-            y: 165-165*((Math.min(_value,max)-min)/(max-min))
+            y: 165 - 165 * ((Math.min(_value, max) - min) / (max - min))
             width: img.width
-            height: 165*((Math.min(_value,max)-min)/(max-min))
+            height: 165 * ((Math.min(_value, max) - min) / (max - min))
             clip: true
             Image {
                 id: img
-                y: -(165-165*((Math.min(_value,max)-min)/(max-min)))
-                source : "images/widget_vlevel_active.png"
+                y: -(165 - 165 * ((Math.min(_value, max) - min) / (max - min)))
+                source: "images/widget_vlevel_active.png"
             }
         }
     }
     Image {
-        x: 0; y: 67
-        source : "images/widget_vlevel_circle.png"
+        x: 0
+        y: 67
+        source: "images/widget_vlevel_circle.png"
         WidgetLabel {
-            x: 6; y: 103
-            width: 48; height: 34
+            x: 6
+            y: 103
+            width: 48
+            height: 34
             horizontalAlignment: Text.AlignHCenter
             font.pixelSize: 24
-            text: param.engValidity?_value.toFixed(precision):""
+            text: param.engValidity ? _value.toFixed(precision) : ""
         }
     }
 
     Component.onCompleted: {
-        updateValue();
+        updateValue()
     }
 
     onParamChanged: {
-        param.nameChanged.connect(updateValue);
-        param.engValidityChanged.connect(updateValue);
-        param.engValueChanged.connect(updateValue);
+        param.nameChanged.connect(updateValue)
+        param.engValidityChanged.connect(updateValue)
+        param.engValueChanged.connect(updateValue)
     }
     function updateValue() {
-        if(!param.engValidity || isNaN(param.engValue))
-            _value = 0;
+        if (!param.engValidity || isNaN(param.engValue))
+            _value = 0
         else
-            _value = Number(param.engValue);
+            _value = Number(param.engValue)
     }
 }

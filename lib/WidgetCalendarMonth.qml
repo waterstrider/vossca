@@ -1,4 +1,4 @@
-import QtQuick 2.0
+import QtQuick 2.3
 
 Item {
     signal dayClicked(var clickedDate)
@@ -15,49 +15,64 @@ Item {
         Repeater {
             model: ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"]
             WidgetLabelUI {
-                width: 200; height: 20
+                width: 200
+                height: 20
                 horizontalAlignment: Text.AlignRight
-                color: (index==0)?"red":"white"
+                color: (index == 0) ? "red" : "white"
                 text: modelData
             }
         }
     }
 
     Grid {
-        x: 0; y: 20
+        x: 0
+        y: 20
         columns: 7
-        rowSpacing: 12; columnSpacing: 5
+        rowSpacing: 12
+        columnSpacing: 5
         Repeater {
             model: 35
             WidgetButtonCornered {
-                property var date: getDateForCalMonth(year,month,index)
-                width: 200; height: 160
+                property var date: getDateForCalMonth(year, month, index)
+                width: 200
+                height: 160
                 WidgetLabelUI {
-                    anchors.right: parent.right; anchors.top: parent.top
-                    anchors.rightMargin: 5; anchors.topMargin: 5
+                    anchors.right: parent.right
+                    anchors.top: parent.top
+                    anchors.rightMargin: 5
+                    anchors.topMargin: 5
                     text: date.getDate()
-                    color: (date.getMonth()==month)?"white":"gray"
+                    color: (date.getMonth() == month) ? "white" : "gray"
                 }
                 Flickable {
-                    x: 0; y: 25
-                    width: 200; height: Math.min(130,col.height)
+                    x: 0
+                    y: 25
+                    width: 200
+                    height: Math.min(130, col.height)
                     clip: true
                     flickableDirection: Flickable.VerticalFlick
-                    contentWidth: 200; contentHeight: col.height
+                    contentWidth: 200
+                    contentHeight: col.height
                     Column {
                         id: col
                         spacing: 2
                         Repeater {
-                            model: ([date.getFullYear(),date.getMonth(),date.getDate()] in container.model)?
-                                       container.model[[date.getFullYear(),date.getMonth(),date.getDate()]]:
-                                       []
+                            model: ([date.getFullYear(), date.getMonth(
+                                         ), date.getDate(
+                                         )] in container.model) ? container.model[[date.getFullYear(), date.getMonth(), date.getDate()]] : []
                             WidgetButton {
                                 x: 10
-                                width: 180; height: 16
+                                width: 180
+                                height: 16
                                 fontSize: 14
                                 labelLeftMargin: 5
                                 borderColor: "transparent"
-                                label: modelData["date"].toISOString().substr(11,5) + " - " + modelData["user"].substr(0,10) + " - " + modelData["workstation"].substr(0,6)
+                                label: modelData["date"].toISOString().substr(
+                                           11,
+                                           5) + " - " + modelData["user"].substr(
+                                           0,
+                                           10) + " - " + modelData["workstation"].substr(
+                                           0, 6)
                                 onClicked: itemClicked(date, modelData["name"])
                             }
                         }
@@ -70,13 +85,9 @@ Item {
         }
     }
 
-    function getDateForCalMonth(year,month,i) {
-        var d = new Date(year,month,1);
-        d.setDate(d.getDate() - d.getDay() + i);
-        return d;
+    function getDateForCalMonth(year, month, i) {
+        var d = new Date(year, month, 1)
+        d.setDate(d.getDate() - d.getDay() + i)
+        return d
     }
-
-
-
-
 }

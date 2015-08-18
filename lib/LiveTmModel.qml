@@ -1,4 +1,4 @@
-import QtQuick 2.0
+import QtQuick 2.3
 import com.terma.TM 1.0
 import com.terma.MIB 1.0
 
@@ -9,13 +9,13 @@ Item {
     property alias countdownModel: countdown
     property bool loaded: (tmListModel.count > 0)
     property double currentTime: Date.now()
-    property var _tmParams:[]
+    property var _tmParams: []
 
     Component.onCompleted: {
-        console.log("LiveTmModel constructed");
-        reload();
-        tickTimer.start();
-        tcTimer.start();
+        console.log("LiveTmModel constructed")
+        reload()
+        tickTimer.start()
+        tcTimer.start()
     }
 
     Component.onDestruction: {
@@ -29,82 +29,89 @@ Item {
 
     function reload() {
         //Reload countdownModel
-        countdown.reload(currentTime, "THEOS");
+        //countdown.reload(currentTime,"THEOS","Sriracha");
+        countdown.reload(currentTime, "THEOS", "SiRacha")
 
         //Load TC databases
-        ccsTcDatabase = context.getCcsTcDatabase();        
-        if(ccsTcDatabase) {
-            if(ccsTcDatabase.status == "loaded") {
-                refreshTcData();
+        ccsTcDatabase = context.getCcsTcDatabase()
+        if (ccsTcDatabase) {
+            if (ccsTcDatabase.status == "loaded") {
+                refreshTcData()
             } else {
-                ccsTcDatabase.statusChanged.connect(refreshTcData);
+                ccsTcDatabase.statusChanged.connect(refreshTcData)
             }
         } else {
-            status = "error";
-            console.log("Error: TC database loading failed");
-            return;
+            //status = "error";
+            console.log("Error: TC database loading failed")
+            return
         }
     }
 
     function getTcModel() {
-        if(ccsTcDatabase)
-            return ccsTcDatabase.tcModel;
+        if (ccsTcDatabase)
+            return ccsTcDatabase.tcModel
         else
-            return null;
+            return null
     }
 
     function refreshTcData() {
-        if(ccsTcDatabase.status == "loaded") {
-            ccsTcDatabase.seek(currentTime);
+        if (ccsTcDatabase.status == "loaded") {
+            ccsTcDatabase.seek(currentTime)
         }
     }
 
     Timer {
         id: tickTimer
-        interval: 1000; running: false; repeat: true
+        interval: 1000
+        running: false
+        repeat: true
         onTriggered: {
             // Update current time
-            currentTime = Date.now();
+            currentTime = Date.now()
 
             // Update countdown model
-            countdown.update(currentTime);
+            countdown.update(currentTime)
         }
     }
 
     Timer {
         id: tcTimer
-        interval: 3000; running: false; repeat: true
+        interval: 3000
+        running: false
+        repeat: true
         onTriggered: {
             // Reload TC data
-            if(ccsTcDatabase && (ccsTcDatabase.status == "loaded")) {
-                ccsTcDatabase.reload();
-                if(ccsTcDatabase.status == "loaded") {
-                    refreshTcData();
+            if (ccsTcDatabase && (ccsTcDatabase.status == "loaded")) {
+                ccsTcDatabase.reload()
+                if (ccsTcDatabase.status == "loaded") {
+                    refreshTcData()
                 } else {
-                    ccsTcDatabase.statusChanged.connect(refreshTcData);
+                    ccsTcDatabase.statusChanged.connect(refreshTcData)
                 }
             }
         }
     }
 
-
     TmListModel {
         id: tmListModel
         table: "PCF"
         onCountChanged: {
-            if(count > 0) {
-                for(var paramName in _tmParams)
-                    _tmParams[paramName].connect();
+            if (count > 0) {
+                for (var paramName in _tmParams)
+                    _tmParams[paramName].connect()
             }
         }
     }
 
     function param(paramName) {
-        if(!(paramName in _tmParams)) {
-            _tmParams[paramName] = comTmParam.createObject(liveTmModel, {"name":paramName});
-            if(tmListModel.count > 0) _tmParams[paramName].connect();
+        if (!(paramName in _tmParams)) {
+            _tmParams[paramName] = comTmParam.createObject(liveTmModel, {
+                                                               name: paramName
+                                                           })
+            if (tmListModel.count > 0)
+                _tmParams[paramName].connect()
         }
-        return _tmParams[paramName];
+        return _tmParams[paramName]
     }
 
     Component {
@@ -126,7 +133,7 @@ Item {
             }
 
             function connect() {
-                tmParam.name = name;
+                tmParam.name = name
             }
         }
     }
